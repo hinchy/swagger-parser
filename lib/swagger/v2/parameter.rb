@@ -30,6 +30,19 @@ module Swagger
       # @!endgroup
 
       include DeterministicJSONSchema
+
+      def parse
+        # resolve $ref parameters
+        schema = clone
+        if schema.key?('$ref')
+          #  TODO: Make this smarter than just split, assuming local ref
+          key = schema.delete('$ref').split('/').last
+          model = root.parameters[key]
+          schema.merge!(model)
+        end
+
+        schema.to_hash
+      end
     end
   end
 end
