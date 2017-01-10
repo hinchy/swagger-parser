@@ -4,7 +4,10 @@ module Swagger
   class SwaggerObject < Hashie::Dash
     include Hashie::Extensions::Coercion
     include Hashie::Extensions::IndifferentAccess
-    include Swagger::Attachable
+
+    if $attachable
+      include Swagger::Attachable
+    end
 
     CUSTOM_PROPERTY_PREFIX = /^x\-/
 
