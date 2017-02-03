@@ -34,7 +34,6 @@ module Swagger
 
         describe '#uri_template', extension: true do
           it 'is combines the host and basePath into a single template' do
-            # expect(swagger.uri_template).to eq(Addressable::Template.new("#{expected_host}#{expected_basePath}"))
             expect(swagger.uri_template).to eq("#{expected_host}#{expected_basePath}")
           end
         end

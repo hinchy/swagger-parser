@@ -3,6 +3,7 @@ module Swagger
   # up the hierarchy.
   module Attachable
     # The top-level object in the hierarchy.
+    attr_accessor :children
     def root
       return self if parent.nil?
       parent.root
@@ -16,8 +17,12 @@ module Swagger
 
     # @api private
     def attach_to_children
+      @children ||= []
       each_value do |v| # rubocop:disable Style/Next
-        v.attach_parent self if v.respond_to? :attach_parent
+        if v.respond_to? :attach_parent
+          v.attach_parent self
+          self.children << v
+        end
         if v.respond_to? :each_value
           v.each_value do |sv|
             sv.attach_parent self if sv.respond_to? :attach_parent

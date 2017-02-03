@@ -16,7 +16,7 @@ module Swagger
     def parse
       schema = clone
       if schema.key?('$ref')
-        key = schema.delete('$ref')
+        key = schema.delete('$ref').split('/').last
         model = root.definitions[key]
         schema.merge!(model)
       end
@@ -38,13 +38,14 @@ module Swagger
     end
 
     def resolve_refs
-      items_and_props = [deep_select('items'), deep_select('properties')].flatten.compact
-      items_and_props.each do |item|
-        key = item.delete('$ref')
-        next if remote_ref? key
-        model = root.definitions[key]
-        item.merge!(model)
+      children.each do |child|
+        child.resolve_refs if child.is_a?(Swagger::Schema)
       end
+      key = self.delete('$ref')
+      return if key.nil? || remote_ref?(key)
+      key = key.split('/').last
+      model = root.definitions[key]
+      self.merge!(model)
     end
 
     def refs_resolved?
