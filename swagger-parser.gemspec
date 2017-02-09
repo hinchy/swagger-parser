@@ -3,16 +3,15 @@ $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
 require 'swagger/version'
 
 Gem::Specification.new do |spec|
-  spec.name          = 'swagger-core'
+  spec.name          = 'swagger-parser'
   spec.version       = Swagger::VERSION
-  spec.authors       = ['Max Lincoln']
-  spec.email         = ['max@devopsy.com']
+  spec.authors       = ['Alex Johnson']
   spec.summary       = 'Swagger parser for Ruby'
   spec.description   = <<-eos
     The Swagger gem parses and provides an simple API for
     [Swagger](http://swagger.io/) documents that define RESTful APIs.
   eos
-  spec.homepage      = 'https://github.com/maxlinc/swagger-rb'
+  spec.homepage      = 'https://github.com/alexpjohnson/swagger-parser'
   spec.license       = 'Apache-2.0'
 
   spec.files         = `git ls-files -z`.split("\x0")
