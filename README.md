@@ -1,15 +1,15 @@
 # Swagger
 
+This is a fork of (swagger-rb)[https://github.com/swagger-rb/swagger-rb]. I've renamed the repo and pushed it to ruby-gems because it seems like the other repo is no longer maintained.
+
 Swagger is a Ruby library for parsing, building, and traversing (Swagger)[http://swagger.io/] API definitions.
 
 ## Installation
 
-*NOTE*: The gem is named `swagger-core`, because `swagger` was taken by an unrelated project.
-
 Add this line to your application's Gemfile:
 
 ```ruby
-gem 'swagger-core'
+gem 'swagger-parser'
 ```
 
 And then execute:
@@ -18,7 +18,7 @@ And then execute:
 
 Or install it yourself as:
 
-    $ gem install swagger-core
+    $ gem install swagger-parser
 
 ## Features
 
