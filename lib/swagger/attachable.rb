@@ -22,6 +22,7 @@ module Swagger
         if v.respond_to? :attach_parent
           v.attach_parent self
           self.children << v
+          self.children.uniq!
         end
         if v.respond_to? :each_value
           v.each_value do |sv|

@@ -17,12 +17,13 @@ module Swagger
       schema = clone
       if schema.key?('$ref')
         key = schema.delete('$ref').split('/').last
-        model = root.definitions[key]
+        model = root.definitions[key].parse
         schema.merge!(model)
       end
 
       count = 0
       until schema.refs_resolved?
+        #puts count
         fail 'Could not resolve non-remote $refs 5 cycles - circular references?' if count >= 5
         schema.resolve_refs
         count += 1
@@ -44,7 +45,7 @@ module Swagger
       key = self.delete('$ref')
       return if key.nil? || remote_ref?(key)
       key = key.split('/').last
-      model = root.definitions[key]
+      model = root.definitions[key].parse
       self.merge!(model)
     end
 
