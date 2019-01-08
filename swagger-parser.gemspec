@@ -11,7 +11,7 @@ Gem::Specification.new do |spec|
     The Swagger gem parses and provides an simple API for
     [Swagger](http://swagger.io/) documents that define RESTful APIs.
   eos
-  spec.homepage      = 'https://github.com/alexpjohnson/swagger-parser'
+  spec.homepage      = 'https://github.com/hinchy/swagger-parser'
   spec.license       = 'Apache-2.0'
 
   spec.files         = `git ls-files -z`.split("\x0")
